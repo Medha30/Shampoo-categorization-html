@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Shampoo Selector</title>
+    <style>
+        body {
+            background-image: url('shampoo.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personalized Shampoo Selector</h2>
+        <form id="shampooForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="hairType">Hair Type:</label>
+            <select id="hairType" name="hairType">
+                <option value="long">Long Hair</option>
+                <option value="short">Short Hair</option>
+                <option value="curly">Curly Hair</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("shampooForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var hairType = document.getElementById("hairType").value;
+            var resultElement = document.getElementById("result");
+            var shampoo = '';
+
+            if (hairType === 'long') {
+                shampoo = 'Loreal Professional Shampoo';
+            } else if (hairType === 'short') {
+                shampoo = 'Sunsilk Shampoo';
+            } else {
+                shampoo = 'Dove Shampoo';
+            }
+
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var city = document.getElementById("city").value;
+
+            resultElement.innerHTML = `<p>Dear ${name}, based on your inputs:</p>`;
+            resultElement.innerHTML += `<p>You are ${age} years old and live in ${city}.</p>`;
+            resultElement.innerHTML += `<p>We recommend using ${shampoo} for your hair.</p>`;
+        });
+    </script>
+</body>
+</html>
